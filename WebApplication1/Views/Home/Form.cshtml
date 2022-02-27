@@ -1,0 +1,39 @@
+﻿@model WebApplication1.Models.CarModel
+@{
+    ViewData["Title"] = "Formularz";
+}
+
+<form asp-controller="Home" asp-action="AddCar" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label>Marka</label>
+        <input asp-for="Mark" class="form-control" type="text" />
+        <span asp-validation-for="Mark" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Model</label>
+        <input asp-for="Model" class="form-control" type="text" />
+        <span asp-validation-for="Model" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Kolor</label>
+        <input asp-for="Color" class="form-control" type="text" />
+        <span asp-validation-for="Color" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Rodzaj paliwa</label>
+        <select asp-for="FuelType" class="form-control">
+            <option>Benzyna</option>
+            <option>Olej napędowy</option>
+            <option>Gaz</option>
+            <option>Elektryczny</option>
+        </select>
+        <span asp-validation-for="FuelType" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Przebieg</label>
+        <input asp-for="Mileage" class="form-control" />
+        <span asp-validation-for="Mileage" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

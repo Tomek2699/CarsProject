@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+@(Html.DevExtreme().DataGrid<WebApplication1.Models.CarModel>()
+    .ShowBorders(true)
+    .DataSource(ds => ds.Mvc()
+    .Controller("CarModels")
+    .LoadAction("Get")
+    .UpdateAction("Put")
+    .DeleteAction("Delete")
+    .Key("CarId")
+    )
+    .Columns(columns => {
+
+        columns.AddFor(m => m.CarId).AllowEditing(false);
+
+        columns.AddFor(m => m.Mark);
+
+        columns.AddFor(m => m.Model);
+
+        columns.AddFor(m => m.Color);
+
+        columns.AddFor(m => m.FuelType);
+
+        columns.AddFor(m => m.Mileage);
+    })
+    .Paging(p => p.PageSize(10))
+    .Pager(pager =>
+    {
+        pager.ShowPageSizeSelector(true);
+        pager.AllowedPageSizes(new[] { 5, 10, 20 });
+        pager.ShowInfo(true);
+        pager.Visible(true);
+    })
+    .FilterRow(f => f.Visible(true))
+    .HeaderFilter(f => f.Visible(true))
+    .GroupPanel(p => p.Visible(true))
+    .Grouping(g => g.AutoExpandAll(false))
+    .RemoteOperations(true)
+    .Editing(e => e
+        .AllowUpdating(true)
+        .AllowDeleting(true)
+    )
+    .FocusedRowEnabled(true)
+)
